@@ -1,0 +1,6 @@
+apiVersion: configsync.gke.io/v1beta1
+kind: Repo
+metadata:
+  name: root-repo
+spec:
+  sourceFormat: hierarchy
