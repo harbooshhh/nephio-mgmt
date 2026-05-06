@@ -1,0 +1,26 @@
+apiVersion: kpt.dev/v1
+kind: Kptfile
+metadata:
+  name: free5gc-cp
+  annotations:
+    config.kubernetes.io/local-config: "true"
+upstream:
+  type: git
+  git:
+    repo: https://github.com/nephio-project/free5gc-packages
+    directory: /free5gc-cp
+    ref: main
+  updateStrategy: resource-merge
+upstreamLock:
+  type: git
+  git:
+    repo: https://github.com/nephio-project/free5gc-packages
+    directory: /free5gc-cp
+    ref: main
+    commit: 17d27a9e5cd15512ae17d0aafd973573b7ad0bed
+info:
+  description: this package represents free5gc NFs, which are required to perform E2E conn testing
+pipeline:
+  mutators:
+    - image: gcr.io/kpt-fn/set-namespace:v0.4.1
+      configPath: package-context.yaml

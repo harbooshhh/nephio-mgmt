@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata: # kpt-merge: /nssf-nnssf
+  name: nssf-nnssf
+  labels:
+    app.kubernetes.io/version: "v3.1.1"
+    project: free5gc
+    nf: nssf
+  annotations:
+    internal.kpt.dev/upstream-identifier: '|Service|default|nssf-nnssf'
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+      name: http
+  selector:
+    project: free5gc
+    nf: nssf
